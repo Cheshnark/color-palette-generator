@@ -1,13 +1,16 @@
 import './Main.css'
 
 import Header from '../../components/Header/Header'
+import Selector from '../../components/Selector/Selector'
+import SavedPalettes from '../../components/SavedPalettes/SavedPalettes'
 
 const Main = () => {
     return (
         <>
             <Header />
             <main>
-                <h1>Jonrón ron</h1>
+                <Selector />
+                <SavedPalettes />
             </main>
         </>
     )
