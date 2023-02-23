@@ -2,3 +2,41 @@
     width: 90%;
     margin: 0 auto;
 }
+
+.saved-palettes h2 {
+    font-weight: 700;
+    font-size: 1.25rem;
+    line-height: 1.9rem;
+}
+
+.palette-name-container {
+    display: flex;
+    justify-content: space-between;
+
+    padding: 0.5rem 0.5rem 0.5rem 0;
+}
+
+.palette h4 {
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.5rem;
+}
+
+.palette-colors {
+    display: flex;
+    justify-content: space-around;
+
+    background-color: #151515;
+    padding: 1rem 0.75rem 1rem 0.75rem;
+
+    border-radius: 10px;
+}
+
+.color {
+    min-width: 42px;
+    min-height: 42px;
+
+    border-radius: 100%;
+    border: 3px solid #FFFFFF;
+    box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.15);
+}
