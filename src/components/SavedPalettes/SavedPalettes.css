@@ -40,3 +40,45 @@
     border: 3px solid #FFFFFF;
     box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.15);
 }
+
+@media (min-width: 320px) {
+    .saved-palettes-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        justify-items: center;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .saved-palettes h2 {
+        font-size: 1.5rem;
+        line-height: 2.25rem;
+
+        margin-bottom: 2.38rem;
+    }
+
+    .palette-colors {
+        min-width: 353px;
+    }
+}
+
+@media (min-width: 800px) {
+    .palette {
+        min-width: 353px;
+    }
+
+    .saved-palettes-container {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (min-width: 1200px) {
+    .palette {
+        width: 80%;
+        max-width: 470px;
+    }
+
+    .saved-palettes-container {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}

@@ -9,7 +9,7 @@ let colorArray = new Array(5).fill(null)
 const Selector = (props) => {
     const [selectedId, setSelectedId] = useState(0)
     const [selectedColor, setSelectedColor] = useState(null)
-    const [haschanged, setHasChanged] = useState(false)
+    const [hasChanged, sethasChanged] = useState(false)
     const [name, setName] = useState("")
     const [scale, setScale] = useState(false)
     const [id, setId] = useState()
@@ -21,7 +21,7 @@ const Selector = (props) => {
 
     useEffect(() => {
         colorArray[selectedId] = selectedColor
-    }, [haschanged])
+    }, [hasChanged])
 
     const addPalette = () => {
         if(name.length > 0){
@@ -55,16 +55,17 @@ const Selector = (props) => {
                                 }}
                         onClick={(e) => {
                             setSelectedId(e.target.id)
-                            setHasChanged(!haschanged)
+                            sethasChanged(!hasChanged)
                             setScale(true)
                             setId(e.target.id)
                         }} ></div>
                     )
                 })}
-            </figure>
+             </figure>
             <CompactPicker onChange={(e) => {
+                sethasChanged(!hasChanged)
                 setSelectedColor(e.hex)
-                setHasChanged(!haschanged)
+                sethasChanged(!hasChanged)
             }} />
             <div className="selector-save">
                 <h3>Name</h3>
