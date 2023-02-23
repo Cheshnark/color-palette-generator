@@ -1,5 +1,4 @@
 import './SavedPalettes.css'
-import { useEffect } from 'react'
 
 import trash from '../../svg/trash.svg'
 
@@ -12,6 +11,10 @@ const SavedPalettes = (props) => {
         props.changer(!status)
     }
 
+    const edit = (e) => {
+        props.paletteEdit(e.target.id)
+    }
+
     return (
         <section className='saved-palettes'>
             <h2>Saved palettes</h2>
@@ -19,7 +22,7 @@ const SavedPalettes = (props) => {
                 {palettes &&
                     palettes.map((palette, i) => {
                     return (
-                        <div className="palette" key={i}>
+                        <div className="palette" key={i} id={palette.id} >
                             <div className="palette-name-container">
                                 <h4>{palette.name}</h4>
                                 <img 
@@ -28,12 +31,14 @@ const SavedPalettes = (props) => {
                                     id={palette.id}
                                     onClick={deletePalette} />
                             </div>
-                            <figure className="palette-colors">
-                                {palette.colors.map(color => {
+                            <figure className="palette-colors" id={palette.id} onClick={edit}>
+                                {palette.colors.map((color, i) => {
                                     return(
                                         <div 
                                             className="color"
-                                            style={{backgroundColor: `${color}`}} ></div>
+                                            style={{backgroundColor: `${color}`}}
+                                            key={i}    
+                                        ></div>
                                     )
                                 })}
                             </figure>

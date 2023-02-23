@@ -2,6 +2,8 @@ import './Selector.css'
 import { useState, useEffect } from 'react'
 import { CompactPicker } from 'react-color'
 
+import empty from '../../svg/empty.png'
+
 let colorArray = new Array(5).fill(null)
 
 const Selector = (props) => {
@@ -9,20 +11,29 @@ const Selector = (props) => {
     const [selectedColor, setSelectedColor] = useState(null)
     const [haschanged, setHasChanged] = useState(false)
     const [name, setName] = useState("")
+    const [scale, setScale] = useState(false)
+    const [id, setId] = useState()
     const status = props.hasChanged
+
+    if(props.editPalette){
+        colorArray = props.editPalette.colors
+    }
 
     useEffect(() => {
         colorArray[selectedId] = selectedColor
     }, [haschanged])
 
     const addPalette = () => {
-        localStorage.setItem(new Date().valueOf(), JSON.stringify({
-            id: new Date().valueOf(),
-            name: name,
-            colors: colorArray
-        }))
-        setName("")
-        props.changer(!status)
+        if(name.length > 0){
+            localStorage.setItem(new Date().valueOf(), JSON.stringify({
+                id: new Date().valueOf(),
+                name: name,
+                colors: colorArray
+            }))
+            setName("")
+            props.changer(!status)
+            colorArray = new Array(5).fill(null)
+        }
     }
 
     return (
@@ -33,10 +44,20 @@ const Selector = (props) => {
                         <div 
                         id={i} 
                         key={i} 
-                        style={{backgroundColor: `${color}`}}
+                        className={`${scale && id == i && "scale"}`}
+                        style={
+                            color != null ? {background: `${color}`}
+                                :scale && id == i ? {
+                                    background: "#aea1ff"
+                                } : {
+                                backgroundImage: `url(${empty})`, 
+                                backgroundSize:"contain",
+                                }}
                         onClick={(e) => {
                             setSelectedId(e.target.id)
                             setHasChanged(!haschanged)
+                            setScale(true)
+                            setId(e.target.id)
                         }} ></div>
                     )
                 })}

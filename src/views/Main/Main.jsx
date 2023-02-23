@@ -7,6 +7,8 @@ import SavedPalettes from '../../components/SavedPalettes/SavedPalettes'
 
 const Main = () => {
     const [hasChanged, setHasChanged] = useState(false)
+    const [editPaletteNumber, setEditPaletteNumber] = useState(0)
+    const [editPalette, setEditPalette] = useState()
 
     let palettes = []
     let local = localStorage
@@ -14,6 +16,10 @@ const Main = () => {
     useEffect(() => {
         local = localStorage
     }, [hasChanged])
+
+    useEffect(() => {
+        setEditPalette(JSON.parse(localStorage.getItem(editPaletteNumber)))
+    },[editPaletteNumber])
     
     for(let key in local){
         const item = JSON.parse(localStorage.getItem(key))
@@ -26,8 +32,17 @@ const Main = () => {
         <>
             <Header />
             <main>
-                <Selector hasChanged={hasChanged} changer={setHasChanged}/>
-                <SavedPalettes palettes={palettes} hasChanged={hasChanged} changer={setHasChanged}/>
+                <Selector 
+                    hasChanged={hasChanged} 
+                    changer={setHasChanged}
+                    editPalette={editPalette}
+                    />
+                <SavedPalettes 
+                    palettes={palettes} 
+                    hasChanged={hasChanged} 
+                    changer={setHasChanged}
+                    paletteEdit={setEditPaletteNumber}
+                    />
             </main>
         </>
     )
