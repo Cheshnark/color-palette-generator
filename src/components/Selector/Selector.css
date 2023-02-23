@@ -29,6 +29,14 @@
     transform: scale(120%);
 }
 
+.picker-name {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 100%;
+}
+
 .selector > div:nth-child(2) {
     padding:0.3rem 0.5rem 0 0.5rem;
     border-radius: 10px;
@@ -81,3 +89,18 @@
 .selector-save i {
     font-size: 1.4rem;
 }
+
+/* Aquí no aplica 320px, decisión propia, posibilidad de que se vea mal en algunos dispositivos, aunque pocos */
+
+@media (min-width:520px) {
+
+    .selector-colors div {
+        min-width: 74px;
+        min-height: 74px;
+    }
+}
+
+/* Aunque podría colocar el selector de color y la última sección en un div para aplicarle un flex
+y dejarlo uno al lado del otro, he preferido dejarlo así, porque me ha costado dar estilo al 
+selector de color y de aplicar el div tenía que volver a pegarme con los selectores de css y 
+las pseudoclases y no me da tiempo a hacerlo */
