@@ -1,29 +1,15 @@
 import './SavedPalettes.css'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 
 import trash from '../../svg/trash.svg'
 
-const SavedPalettes = () => {
-    // const [palettes, setPalettes] = useState(null)
-    const [hasChanged, setHasChanged] = useState(false)
-    let palettes = []
-    let local = localStorage
-
-    useEffect(() => {
-        local = localStorage
-    }, [hasChanged])
-    
-    
-    for(let key in local){
-        const item = JSON.parse(localStorage.getItem(key))
-        if(item !== null){
-            palettes.push(item)
-        }
-    }
+const SavedPalettes = (props) => {
+    const palettes = props.palettes
+    const status = props.hasChanged
 
     const deletePalette = (e) => {
         localStorage.removeItem(e.target.id)
-        setHasChanged(!hasChanged)
+        props.changer(!status)
     }
 
     return (
